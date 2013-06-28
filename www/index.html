@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<title>Schudio</title>
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+		<script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="js/json.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
+		<script type="text/javascript" src="js/config.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</head>
+	<body>
+		<div data-role="page" id="index-page">
+			<div data-role="header" data-position="fixed">
+				<h3>Welcome</h3>
+			</div>
+			<div class="heading" style="display:none">
+				<div class="logo" style="display:none"><img src="" /></div>
+				<h1></h1>
+			</div>
+			<div data-role="content">
+				<ul data-role="listview" data-inset="true" id="listview">
+					<li><a href="news.html" data-ajax="false">Latest News</a></li>
+					<li><a href="events.html" data-ajax="false">Upcoming Events</a></li>
+					<li><a href="announcements.html" data-ajax="false">Announcements</a></li>
+					<li><a href="calendar.html" data-ajax="false">Term Dates</a></li>
+				</ul>
+				<p class="social" style="display:none">
+					<a href="#" target="_blank" id="facebook"><img src="img/social-icons/facebook.png" alt="Facebook"></a>
+					<a href="#" target="_blank" id="twitter"><img src="img/social-icons/twitter.png" alt="Twitter"></a>
+					<a href="#" target="_blank" id="youtube"><img src="img/social-icons/youtube.png" alt="YouTube"></a>
+				</p>
+				<p class="powered">Powered by<br />
+					<img src="img/schudio.png" alt="Schudio" /><br />
+					<a href="http://www.schudio.com" target="_blank">www.schudio.com</a> &nbsp;|&nbsp;
+					<a href="mailto:info@schudio.com">info@schudio.com</a>
+				</p> 
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" class="custom-icons" data-grid="c">
+					<ul>
+						<li><a href="#index-page" data-icon="custom" id="home">Home</a></li>
+						<li><a href="#about-page" data-icon="custom" id="info">About Us</a></li>
+						<li><a href="#contact-page" data-icon="custom" id="mail">Contact</a></li>
+						<li><a href="#settings-page" data-icon="custom" id="gear">Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="about-page">
+			<div data-role="header" data-position="fixed">
+				<a href="#index-page" data-icon="arrow-l" data-iconpos="left" data-theme="a" data-direction="reverse">Home</a>
+				<h3>About School</h3>
+			</div>
+			<div id="heading" class="heading" style="display:none">
+				<div class="logo" style="display:none"><img src="" /></div>
+				<h1></h1>
+			</div>
+			<div data-role="content">
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" class="custom-icons" data-grid="c">
+					<ul>
+						<li><a href="#index-page" data-icon="custom" id="home">Home</a></li>
+						<li><a href="#about-page" data-icon="custom" id="info">About Us</a></li>
+						<li><a href="#contact-page" data-icon="custom" id="mail">Contact</a></li>
+						<li><a href="#settings-page" data-icon="custom" id="gear">Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="contact-page">
+			<div data-role="header" data-position="fixed">
+				<a href="#index-page" data-icon="arrow-l" data-iconpos="left" data-theme="a" data-direction="reverse">Home</a>
+				<h3>Contact</h3>
+			</div>
+			<div id="heading" class="heading" style="display:none">
+				<div class="logo" style="display:none"><img src="" /></div>
+				<h1></h1>
+			</div>
+			<div data-role="content">
+				<h3 id="contact-school-name"></h3>
+				<address id="contact-address">
+				</address>
+				<p id="contact-email">Email: <a href=""></a></p>
+				<p id="contact-tel">Tel: <a href=""></a></p>
+				<p id="contact-fax">Fax: <a href=""></a></p>
+				<p id="contact-website">Website: <a href=""></a></p>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" class="custom-icons" data-grid="c">
+					<ul>
+						<li><a href="#index-page" data-icon="custom" id="home">Home</a></li>
+						<li><a href="#about-page" data-icon="custom" id="info">About Us</a></li>
+						<li><a href="#contact-page" data-icon="custom" id="mail">Contact</a></li>
+						<li><a href="#settings-page" data-icon="custom" id="gear">Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="settings-page">
+			<div data-role="header" data-position="fixed">
+				<a href="#index-page" data-icon="arrow-l" data-iconpos="left" data-theme="a" data-direction="reverse">Home</a>
+				<h3>Settings</h3>
+			</div>
+			<div id="heading" class="heading" style="display:none">
+				<div class="logo" style="display:none"><img src="" /></div>
+				<h1></h1>
+			</div>
+			<div data-role="content">
+				<ul data-role="listview" data-inset="true" id="listview">
+					<li><a href="#account-page">Your Account</a></li>
+					<li><a href="school.html" data-ajax="false">Your School</a></li>
+					<li><a href="#password-page">Change Password</a></li>
+				</ul>
+				<ul data-role="listview" data-inset="true" id="listview">
+					<li><a href="#about-schudio-page">About Schudio</a></li>
+					<li><a href="#help-page">Help</a></li>
+					<li><a href="#terms-page">Terms &amp; Conditions</a></li>
+					<li><a href="#privacy-page">Privacy Policy</a></li>
+				</ul>
+				<p><a href="logout.html" data-ajax="false" data-role="button">Sign Out</a></p>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" class="custom-icons" data-grid="c">
+					<ul>
+						<li><a href="#index-page" data-icon="custom" id="home">Home</a></li>
+						<li><a href="#about-page" data-icon="custom" id="info">About Us</a></li>
+						<li><a href="#contact-page" data-icon="custom" id="mail">Contact</a></li>
+						<li><a href="#settings-page" data-icon="custom" id="gear">Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="account-page">
+			<div data-role="header" data-position="fixed">
+				<a href="#settings-page" data-icon="arrow-l" data-iconpos="left" data-theme="a" data-direction="reverse">Settings</a>
+				<h3>Account</h3>
+			</div>
+			<div id="heading" class="heading" style="display:none">
+				<div class="logo" style="display:none"><img src="" /></div>
+				<h1></h1>
+			</div>
+			<div data-role="content">
+				<form method="post" id="AccountForm">
+					<div data-role="fieldcontain" class="input required">
+						<input name="email" maxlength="100" type="text" id="UserEmail" placeholder="Email" />
+					</div>
+					<div data-role="fieldcontain" class="input">
+						<input name="name" maxlength="100" type="text" id="UserName" placeholder="Name" />
+					</div>
+					<div data-role="fieldcontain" class="input">
+						<input name="postcode" maxlength="10" type="text" id="UserPostcode" placeholder="Postcode" />
+					</div>
+					<div data-role="fieldcontain" class="submit">
+						<input  data-theme="b" type="submit" value="Save" />
+					</div>
+				</form>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" class="custom-icons" data-grid="c">
+					<ul>
+						<li><a href="#index-page" data-icon="custom" id="home">Home</a></li>
+						<li><a href="#about-page" data-icon="custom" id="info">About Us</a></li>
+						<li><a href="#contact-page" data-icon="custom" id="mail">Contact</a></li>
+						<li><a href="#settings-page" data-icon="custom" id="gear">Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="password-page">
+			<div data-role="header" data-position="fixed">
+				<a href="#settings-page" data-icon="arrow-l" data-iconpos="left" data-theme="a" data-direction="reverse">Settings</a>
+				<h3>Change Password</h3>
+			</div>
+			<div id="heading" class="heading" style="display:none">
+				<div class="logo" style="display:none"><img src="" /></div>
+				<h1></h1>
+			</div>
+			<div data-role="content">
+				<form method="post" id="PasswordForm">
+					<div data-role="fieldcontain" class="input required">
+						<input name="password" maxlength="100" type="text" id="UserPassword" placeholder="Password" />
+					</div>
+					<div data-role="fieldcontain" class="submit">
+						<input  data-theme="b" type="submit" value="Save" />
+					</div>
+				</form>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" class="custom-icons" data-grid="c">
+					<ul>
+						<li><a href="#index-page" data-icon="custom" id="home">Home</a></li>
+						<li><a href="#about-page" data-icon="custom" id="info">About Us</a></li>
+						<li><a href="#contact-page" data-icon="custom" id="mail">Contact</a></li>
+						<li><a href="#settings-page" data-icon="custom" id="gear">Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="about-schudio-page">
+			<div data-role="header" data-position="fixed">
+				<a href="#settings-page" data-icon="arrow-l" data-iconpos="left" data-theme="a" data-direction="reverse">Settings</a>
+				<h3>About Schudio</h3>
+			</div>
+			<div id="heading" class="heading" style="display:none">
+				<div class="logo" style="display:none"><img src="" /></div>
+				<h1></h1>
+			</div>
+			<div data-role="content">
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" class="custom-icons" data-grid="c">
+					<ul>
+						<li><a href="#index-page" data-icon="custom" id="home">Home</a></li>
+						<li><a href="#about-page" data-icon="custom" id="info">About Us</a></li>
+						<li><a href="#contact-page" data-icon="custom" id="mail">Contact</a></li>
+						<li><a href="#settings-page" data-icon="custom" id="gear">Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="help-page">
+			<div data-role="header" data-position="fixed">
+				<a href="#settings-page" data-icon="arrow-l" data-iconpos="left" data-theme="a" data-direction="reverse">Settings</a>
+				<h3>Help</h3>
+			</div>
+			<div id="heading" class="heading" style="display:none">
+				<div class="logo" style="display:none"><img src="" /></div>
+				<h1></h1>
+			</div>
+			<div data-role="content">
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" class="custom-icons" data-grid="c">
+					<ul>
+						<li><a href="#index-page" data-icon="custom" id="home">Home</a></li>
+						<li><a href="#about-page" data-icon="custom" id="info">About Us</a></li>
+						<li><a href="#contact-page" data-icon="custom" id="mail">Contact</a></li>
+						<li><a href="#settings-page" data-icon="custom" id="gear">Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="terms-page">
+			<div data-role="header" data-position="fixed">
+				<a href="#settings-page" data-icon="arrow-l" data-iconpos="left" data-theme="a" data-direction="reverse">Settings</a>
+				<h3>Terms &amp; Conditions</h3>
+			</div>
+			<div id="heading" class="heading" style="display:none">
+				<div class="logo" style="display:none"><img src="" /></div>
+				<h1></h1>
+			</div>
+			<div data-role="content">
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" class="custom-icons" data-grid="c">
+					<ul>
+						<li><a href="#index-page" data-icon="custom" id="home">Home</a></li>
+						<li><a href="#about-page" data-icon="custom" id="info">About Us</a></li>
+						<li><a href="#contact-page" data-icon="custom" id="mail">Contact</a></li>
+						<li><a href="#settings-page" data-icon="custom" id="gear">Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="privacy-page">
+			<div data-role="header" data-position="fixed">
+				<a href="#settings-page" data-icon="arrow-l" data-iconpos="left" data-theme="a" data-direction="reverse">Settings</a>
+				<h3>Privacy Policy</h3>
+			</div>
+			<div id="heading" class="heading" style="display:none">
+				<div class="logo" style="display:none"><img src="" /></div>
+				<h1></h1>
+			</div>
+			<div data-role="content">
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" class="custom-icons" data-grid="c">
+					<ul>
+						<li><a href="#index-page" data-icon="custom" id="home">Home</a></li>
+						<li><a href="#about-page" data-icon="custom" id="info">About Us</a></li>
+						<li><a href="#contact-page" data-icon="custom" id="mail">Contact</a></li>
+						<li><a href="#settings-page" data-icon="custom" id="gear">Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$('#index-page').live('pageinit', function (event) {
+		});
+		$('#about-page').live('pageinit', function (event) {
+			$('#about-page div[data-role=content]').html(school.description);
+		});
+		$('#contact-page').live('pageinit', function (event) {
+			$('#contact-school-name').html(school.name);
+			if (school.address) {
+				$('#contact-address').html(school.address);
+			} else {
+				$('#contact-address').hide();
+			}
+			if (school.email) {
+				$('#contact-email a').text(school.email).attr('href', 'mailto:' + school.email);
+			} else {
+				$('#contact-email').hide();
+			}
+			if (school.telephone) {
+				$('#contact-tel a').text(school.telephone).attr('href', 'tel:' + school.telephone);
+			} else {
+				$('#contact-tel').hide();
+			}
+			if (school.fax) {
+				$('#contact-fax').text(school.fax).attr('href', 'tel:' + school.fax);
+			} else {
+				$('#contact-fax').hide();
+			}
+			$('#contact-website a').text(school.host).attr('href', 'http://' + school.host);
+		});
+		$('#account-page').live('pageinit', function (event) {
+			$('#UserEmail').val(user.User.email);
+			$('#UserName').val(user.User.name);
+			$('#UserPostcode').val(user.User.postcode);
+			$('#AccountForm').submit(function(event){
+				submitButton.attr('disabled', 'disabled');
+				$.ajax({
+					type: 'post',
+					url: api_url + 'account/' + user.User.id,
+					data: {
+						email: $('#UserEmail').val(), 
+						name: $('#UserName').val(),
+						postcode: $('#UserPostcode').val()
+					},
+					dataType: 'json',
+					success: function(data) {
+						if (data.error != undefined) {
+							submitButton.removeAttr('disabled');
+							app_alert(data.error);
+						} else {
+							submitButton.removeAttr('disabled');
+							localStorage.setItem('user', JSON.stringify(data));
+							$.mobile.changePage('#settings-page');
+						}
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						submitButton.removeAttr('disabled');
+						app_alert('Unable to connect to server');
+					}
+				});
+				event.preventDefault();
+			});
+		});
+		$('#password-page').live('pageinit', function (event) {
+			$('#AccountForm').submit(function(event){
+				submitButton.attr('disabled', 'disabled');
+				$.ajax({
+					type: 'post',
+					url: api_url + 'password/' + user.User.id,
+					data: {
+						password: $('#UserPassword').val() 
+					},
+					dataType: 'json',
+					success: function(data) {
+						if (data.error != undefined) {
+							submitButton.removeAttr('disabled');
+							app_alert(data.error);
+						} else {
+							submitButton.removeAttr('disabled');
+							localStorage.setItem('user', JSON.stringify(data));
+							$.mobile.changePage('#settings-page');
+						}
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						submitButton.removeAttr('disabled');
+						app_alert('Unable to connect to server');
+					}
+				});
+				event.preventDefault();
+			});
+		});
+		$('#about-schudio-page').live('pageinit', function(){
+		    $.ajax({
+				type: 'get',
+				url: api_url + 'page/about',
+				dataType: 'html',
+				success: function(data) {
+					$('#about-schudio-page div[data-role=content]').html(data);
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					app_alert('Unable to connect to server');
+				}
+			});
+		});
+		$('#help-page').live('pageinit', function(){
+			$.ajax({
+				type: 'get',
+				url: api_url + 'page/help',
+				dataType: 'html',
+				success: function(data) {
+					$('#help-page div[data-role=content]').html(data);
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					app_alert('Unable to connect to server');
+				}
+			});
+		});
+		$('#terms-page').live('pageinit', function(){
+			$.ajax({
+				type: 'get',
+				url: api_url + 'page/terms',
+				dataType: 'html',
+				success: function(data) {
+					$('#terms-page div[data-role=content]').html(data);
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					app_alert('Unable to connect to server');
+				}
+			});
+		});
+		$('#privacy-page').live('pageinit', function(){
+			$.ajax({
+				type: 'get',
+				url: api_url + 'page/privacy',
+				dataType: 'html',
+				success: function(data) {
+					$('#privacy-page div[data-role=content]').html(data);
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					app_alert('Unable to connect to server');
+				}
+			});
+		});
+	</script>
+</html>

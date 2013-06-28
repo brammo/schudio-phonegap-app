@@ -1,0 +1,540 @@
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.spin  {
+	-webkit-transform: rotate(360deg);
+	-webkit-animation-name: spin;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count:  infinite;
+	-webkit-animation-timing-function: linear;
+}
+@-webkit-keyframes spin {
+	from {-webkit-transform: rotate(0deg);}
+  	to {-webkit-transform: rotate(360deg);}
+}
+
+/* Transitions from jQtouch (with small modifications): http://www.jqtouch.com/
+Built by David Kaneda and maintained by Jonathan Stark.
+*/
+.in, .out {
+	-webkit-animation-timing-function: ease-in-out;
+	-webkit-animation-duration: 350ms;
+}
+
+
+.slide.out {
+	-webkit-transform: translateX(-100%);
+	-webkit-animation-name: slideouttoleft;
+}
+
+.slide.in {
+	-webkit-transform: translateX(0);
+	-webkit-animation-name: slideinfromright;
+}
+
+.slide.out.reverse {
+	-webkit-transform: translateX(100%);
+	-webkit-animation-name: slideouttoright;
+}
+
+.slide.in.reverse {
+	-webkit-transform: translateX(0);
+	-webkit-animation-name: slideinfromleft;
+}
+
+.slideup.out {
+	-webkit-animation-name: dontmove;
+	z-index: 0;
+}
+
+.slideup.in {
+	-webkit-transform: translateY(0);
+	-webkit-animation-name: slideinfrombottom;
+	z-index: 10;
+}
+
+.slideup.in.reverse {
+	z-index: 0;
+	-webkit-animation-name: dontmove;
+}
+
+.slideup.out.reverse {
+	-webkit-transform: translateY(100%);
+	z-index: 10;
+	-webkit-animation-name: slideouttobottom;
+}
+
+.slidedown.out {
+	-webkit-animation-name: dontmove;
+	z-index: 0;
+}
+
+.slidedown.in {
+	-webkit-transform: translateY(0);
+	-webkit-animation-name: slideinfromtop;
+	z-index: 10;
+}
+
+.slidedown.in.reverse {
+	z-index: 0;
+	-webkit-animation-name: dontmove;
+}
+
+.slidedown.out.reverse {
+	-webkit-transform: translateY(-100%);
+	z-index: 10;
+	-webkit-animation-name: slideouttotop;
+}
+
+@-webkit-keyframes slideinfromright {
+    from { -webkit-transform: translateX(100%); }
+    to { -webkit-transform: translateX(0); }
+}
+
+@-webkit-keyframes slideinfromleft {
+    from { -webkit-transform: translateX(-100%); }
+    to { -webkit-transform: translateX(0); }
+}
+
+@-webkit-keyframes slideouttoleft {
+    from { -webkit-transform: translateX(0); }
+    to { -webkit-transform: translateX(-100%); }
+}
+
+@-webkit-keyframes slideouttoright {
+    from { -webkit-transform: translateX(0); }
+    to { -webkit-transform: translateX(100%); }
+}
+
+@-webkit-keyframes slideinfromtop {
+    from { -webkit-transform: translateY(-100%); }
+    to { -webkit-transform: translateY(0); }
+}
+
+@-webkit-keyframes slideinfrombottom {
+    from { -webkit-transform: translateY(100%); }
+    to { -webkit-transform: translateY(0); }
+}
+
+@-webkit-keyframes slideouttobottom {
+    from { -webkit-transform: translateY(0); }
+    to { -webkit-transform: translateY(100%); }
+}
+
+@-webkit-keyframes slideouttotop {
+    from { -webkit-transform: translateY(0); }
+    to { -webkit-transform: translateY(-100%); }
+}
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@-webkit-keyframes fadeout {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.fade.out {
+	z-index: 0;
+	-webkit-animation-name: fadeout;
+}
+
+.fade.in {
+	opacity: 1;
+	z-index: 10;
+	-webkit-animation-name: fadein;
+}
+
+/* The properties in this rule are only necessary for the 'flip' transition.
+ * We need specify the perspective to create a projection matrix. This will add
+ * some depth as the element flips. The depth number represents the distance of
+ * the viewer from the z-plane. According to the CSS3 spec, 1000 is a moderate
+ * value.
+ */
+.viewport-flip {
+	-webkit-perspective: 1000;
+	position: absolute;
+}
+
+.ui-mobile-viewport-transitioning,
+.ui-mobile-viewport-transitioning .ui-page {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.flip {
+	-webkit-animation-duration: .65s;
+	-webkit-backface-visibility:hidden;
+	-webkit-transform:translateX(0); /* Needed to work around an iOS 3.1 bug that causes listview thumbs to disappear when -webkit-visibility:hidden is used. */
+}
+
+.flip.out {
+	-webkit-transform: rotateY(-180deg) scale(.8);
+	-webkit-animation-name: flipouttoleft;
+}
+
+.flip.in {
+	-webkit-transform: rotateY(0) scale(1);
+	-webkit-animation-name: flipinfromleft;
+}
+
+/* Shake it all about */
+
+.flip.out.reverse {
+	-webkit-transform: rotateY(180deg) scale(.8);
+	-webkit-animation-name: flipouttoright;
+}
+
+.flip.in.reverse {
+	-webkit-transform: rotateY(0) scale(1);
+	-webkit-animation-name: flipinfromright;
+}
+
+@-webkit-keyframes flipinfromright {
+    from { -webkit-transform: rotateY(-180deg) scale(.8); }
+    to { -webkit-transform: rotateY(0) scale(1); }
+}
+
+@-webkit-keyframes flipinfromleft {
+    from { -webkit-transform: rotateY(180deg) scale(.8); }
+    to { -webkit-transform: rotateY(0) scale(1); }
+}
+
+@-webkit-keyframes flipouttoleft {
+    from { -webkit-transform: rotateY(0) scale(1); }
+    to { -webkit-transform: rotateY(-180deg) scale(.8); }
+}
+
+@-webkit-keyframes flipouttoright {
+    from { -webkit-transform: rotateY(0) scale(1); }
+    to { -webkit-transform: rotateY(180deg) scale(.8); }
+}
+
+/* Hackish, but reliable. */
+
+@-webkit-keyframes dontmove {
+    from { opacity: 1; }
+    to { opacity: 1; }
+}
+
+.pop {
+	-webkit-transform-origin: 50% 50%;
+}
+
+.pop.in {
+	-webkit-transform: scale(1);
+    opacity: 1;
+	-webkit-animation-name: popin;
+	z-index: 10;
+}
+
+.pop.in.reverse {
+	z-index: 0;
+	-webkit-animation-name: dontmove;
+}
+
+.pop.out.reverse {
+	-webkit-transform: scale(.2);
+	opacity: 0;
+	-webkit-animation-name: popout;
+	z-index: 10;
+}
+
+@-webkit-keyframes popin {
+    from {
+        -webkit-transform: scale(.2);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes popout {
+    from {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: scale(.2);
+        opacity: 0;
+    }
+}
+
+/* =============================================================================
+   Homepage popup styles
+   ========================================================================== */
+
+#pop .ui-body-c {
+	background-position: top
+}
+
+/* =============================================================================
+   Set your main background image and color
+   ========================================================================== */
+   
+.ui-body-c {
+	color:#575749;
+} 
+
+/* =============================================================================
+   Title Bars
+   ========================================================================== */
+
+.page-header { 
+	border:0px;
+	border-bottom:1px solid #bfc0c0; 
+	color:#333; 
+	height:40px; 
+	text-shadow: 0 -1px 1px #fff; 
+} 
+
+.home-page-header.ui-header .ui-title {
+	height:10px; 
+	color:#858484;
+    margin: 0.3em 90px 0.8em;
+    font-size: 13px;
+} /* smaller page title on homepage */
+
+.home-page-header {
+    height: 24px;
+}
+
+
+/*
+Site Name:		emdot mobile website & theme kit
+Description: 	Theme specific style sheet
+Author: 		Mike Ilsley - Beantown Design
+Author URI:		http://BeantownDesign.com
+*/
+
+/* =============================================================================
+   Header Logo
+   ========================================================================== */
+
+div.heading {
+	padding: 15px;
+	background-color: #666;
+	background-size:100% auto;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+div.logo {
+	margin: 0 auto;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+}
+div.logo img {
+	max-height: 50px;
+	width: auto;
+	border: 8px solid #fff;
+	border-radius: 8px;
+	background-color: #fff;
+}
+div.heading h1 {
+	margin: 0;
+	font-size: 18px;
+	color: #fff;
+	text-shadow: 1px 1px 0 #000;
+	text-align: center;
+}
+div.heading.schudio {
+	background-color: transparent;
+}
+
+div.heading.schudio div.logo img {
+	background-color: transparent;
+	border: none;
+}
+
+/* =============================================================================
+   Social Media / Phone Contact on Homepage
+   ========================================================================== */
+
+.social {
+	width: auto;
+	margin: 15px auto;
+	text-align: center; 
+}
+
+.social img {
+	margin: 0 15px;
+}
+
+.powered {
+	text-align: center;
+	font-size: 12px;
+}
+
+.copyright {
+	text-align:center; 
+	font-size:11px
+}
+
+/* =============================================================================
+   Footer Nav Icons
+   ========================================================================== */
+
+.custom-icons .ui-btn .ui-btn-inner { 
+	padding-top: 40px !important; 
+}
+.custom-icons .ui-btn .ui-icon { 
+	width: 30px!important; 
+	height: 30px!important; 
+	margin-left: -15px !important; 
+	box-shadow: none!important; 
+	-moz-box-shadow: none!important; 
+	-webkit-box-shadow: none!important; 
+	-webkit-border-radius: 0 !important; 
+	border-radius: 0 !important; 
+}
+
+#info .ui-icon { background:url(../img/nav-icons/info.png) 50% 50% no-repeat;  background-size: 13px 27px; }
+#home .ui-icon { background:url(../img/nav-icons/home.png) 50% 50% no-repeat;  background-size: 27px 25px; }
+#grid .ui-icon { background:url(../img/nav-icons/grid.png) 50% 50% no-repeat;  background-size: 27px 27px; }
+#mail .ui-icon { background:url(../img/nav-icons/mail.png) 50% 50% no-repeat;  background-size: 27px 21px; }
+
+/* =============================================================================
+   Expanding Shadow Images Under Header & Homepage
+   ========================================================================== */
+
+.shadow {
+	width:100%; 
+	position:relative; 
+	top:-1px; 
+	z-index:5  
+}
+
+li.ui-btn {
+	z-index:10
+}
+
+.shadowBox {
+	margin-bottom:0px !important
+}
+
+/* =============================================================================
+   Portfolio
+   ========================================================================== */
+
+.gallery { 
+	list-style: none; 
+	padding: 0; 
+	margin: 0; 
+}
+
+.gallery:after { 
+	clear: both; 
+	content: "."; 
+	display: block; 
+	height: 0; 
+	visibility: hidden; 
+}
+
+.gallery li { 
+	float: left; 
+	width: 33.33333333%; 
+}
+
+.gallery li a { 
+	display: block; 
+	margin: 5px; 
+	border: 1px solid #3c3c3c; 
+}
+
+.gallery li img { 
+	display: block; 
+	width: 100%; 
+	height: auto; 
+}
+
+#Gallery1 .ui-content, #Gallery2 .ui-content { 
+	overflow: hidden; 
+}
+
+.gallery img {
+	-webkit-box-shadow: 0px 0px 4px #111;
+	-moz-box-shadow: 0px 0px 4px #111;
+	box-shadow: 0px 0px 4px #111; 
+}
+
+.ui-btn-inner {
+    border-color: rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hide{
+	display:none
+}
+
+.small {
+	font-size: 0.8em;
+}
+
+.required label:after {
+	content: ' *';
+	color: #c00;
+}
+
+span.required {
+	color: #c00;
+}
+
+div.input {
+	margin-bottom: 1em;
+}
+
+.error-message {
+	color: #e00;
+	font-size: 0.9em;
+}
+
+div.input.error input,
+div.input.error select {
+	background-color: #Fcc;
+}
+
+.image-box {
+	float: left;
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+	border: 1px solid #888;
+}
+
+.ui-btn-up-c {
+	font-weight: normal;
+}
+
+.ui-bar-a a.ui-link {
+	color: #fff;
+	text-decoration: none;
+}
+
+#flashMessage {
+	margin: 15px 0;
+	padding: 15px;
+	background-color: #0c0;
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 1px 1px 0 #000;
+	border-radius: 8px;
+}
+
+#flashMessage.error {
+	background-color: #c00;
+}
+
+.ui-br {
+	border: none;
+}
+
+.ui-field-contain, .ui-mobile fieldset.ui-field-contain {
+	padding: 0;
+}

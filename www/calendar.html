@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<title>Term Dates</title>
+		<link rel="apple-touch-icon" href="img/icon.png">
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+		<link rel="stylesheet" type="text/css" href="css/fullcalendar.css" />
+		<script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="js/json.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
+		<script type="text/javascript" src="js/fullcalendar.js"></script>
+		<script type="text/javascript" src="js/config.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</head>
+	<body>
+		<div data-role="page" id="calendar-page">
+			<div data-role="header" data-position="fixed">
+				<a href="index.html#index-page" data-ajax="false" data-icon="arrow-l" data-iconpos="left" data-theme="a" data-direction="reverse">Home</a>
+				<h3>Term Dates</h3>
+			</div>
+			<div id="heading" class="heading" style="display:none">
+				<div class="logo" style="display:none"><img src="" /></div>
+				<h1></h1>
+			</div>
+			<div data-role="content">
+				<div id="calendar"></div>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" class="custom-icons" data-grid="c">
+					<ul>
+						<li><a href="index.html#index-page" data-ajax="false" data-icon="custom" id="home">Home</a></li>
+						<li><a href="index.html#about-page" data-ajax="false" data-icon="custom" id="info">About Us</a></li>
+						<li><a href="index.html#contact-page" data-ajax="false" data-icon="custom" id="mail">Contact</a></li>
+						<li><a href="index.html#settings-page" data-ajax="false" data-icon="custom" id="gear">Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="calendar-event-page">
+			<div data-role="header">
+				<h1>Term Dates</h1>
+			</div>
+			<div data-role="content"></div>
+		</div>
+		<script type="text/javascript">
+			$(window).load(function(){
+				$('#calendar').fullCalendar({
+					header: { left: 'prev', center: 'title', right: 'next' },
+					editable: false,
+					events: api_url + 'calendar/' + user.User.account_id,
+					eventClick: function(event, jsEvent, view) {
+						$.ajax({
+							url: event.url, 
+							method: 'get',
+							success: function(data) {
+								$('#calendar-event-page div[data-role=content]').html(data);
+								$.mobile.changePage('#calendar-event-page', {
+									changeHash: true,
+									transition: 'pop', 
+									role: 'dialog'
+								});
+								$.mobile.loading('hide');
+							},
+							error: function(jqXHR, textStatus, errorThrown){
+								navigator.notification.alert(textStatus);
+							}
+						});
+						return false;
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<title>School</title>
+		<link rel="apple-touch-icon" href="img/icon.png">
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+		<script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="js/json.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
+		<script type="text/javascript" src="js/config.js"></script>
+	</head>
+	<body>
+		<div data-role="page" id="signup-page">
+			<div data-role="header" data-position="fixed">
+				<a href="#settings-page" data-icon="arrow-l" data-iconpos="left" data-theme="a" data-direction="reverse">Settings</a>
+				<h3>Join</h3>
+			</div>
+			<div id="heading" class="heading" style="display:none">
+				<div class="logo" style="display:none"><img src="" /></div>
+				<h1></h1>
+			</div>
+			<div data-role="content">
+				<p style="text-align:center"><img src="img/schudio.png" alt="Schudio" /></p>
+				<p style="text-align:center"><strong>Join Schudio now &ndash; it&rsquo;s free!</strong>
+				<form method="post" id="SignupForm">
+					<div data-role="fieldcontain" class="input">
+						<input name="name" maxlength="100" type="text" id="UserName" placeholder="Name" />
+					</div>
+					<div data-role="fieldcontain" class="input required">
+						<input name="email" maxlength="100" type="text" id="UserEmail" placeholder="Email" />
+					</div>
+					<div data-role="fieldcontain" class="input required">
+						<input name="password" maxlength="20" type="password" id="UserPassword" placeholder="Password" />
+					</div>
+					<div data-role="fieldcontain" class="submit">
+						<input data-theme="b" type="submit" value="Join Now" id="submit-button" />
+					</div>
+				</form>
+				<p style="text-align:center">Already on Schudio? <a href="login.html" data-ajax="false">Sign In</a></p>
+				<p style="text-align:center;font-size:12px;">By Joining Schudio, you agree to our <a href="#terms-page">Terms &amp; Conditions</a> and 
+					<a href="#privacy-page">Privacy Policy</a></p>
+				<p style="text-align:center;font-size:12px;">Schudio Ltd. &copy; 2013</p>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" class="custom-icons" data-grid="c">
+					<ul>
+						<li><a href="#index-page" data-icon="custom" id="home">Home</a></li>
+						<li><a href="#about-page" data-icon="custom" id="info">About Us</a></li>
+						<li><a href="#contact-page" data-icon="custom" id="mail">Contact</a></li>
+						<li><a href="#settings-page" data-icon="custom" id="gear">Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('#signup-page').live('pageinit', function (event) {
+				if (window.localStorage['user'] != undefined) {
+//					$.mobile.changePage('index.html', {reloadPage: true});
+					window.location = 'index.html';
+					return;
+				}
+				$('#SignupForm').submit(function(event){
+					var signupForm = $('#signup-page form');
+					var submitButton = $('#submit-button', signupForm);
+					submitButton.attr('disabled', 'disabled');
+					var n = $('#UserName').val();
+					var e = $('#UserEmail', signupForm).val();
+					var p = $('#UserPassword', signupForm).val();
+					if (n == '') {
+						app_alert('Please, enter your name');
+						submitButton.removeAttr('disabled');
+						return false;
+					}
+					if (n != '' && e == '') {
+						app_alert('Please, enter your email');
+						submitButton.removeAttr('disabled');
+						return false;
+					}
+					if (e != '' && p == '') {
+						app_alert('Please, enter a password');
+						submitButton.removeAttr('disabled');
+						return false;
+					}
+					$.ajax({
+						type: 'post',
+						url: api_url + 'signup',
+						data: {
+							name: n,
+							email: e, 
+							password: p,
+						},
+						dataType: 'json',
+						success: function(data) {
+							if (data.error != undefined) {
+								submitButton.removeAttr('disabled');
+								app_alert(data.error);
+							} else {
+								localStorage.setItem('user', JSON.stringify(data));
+//								$.mobile.changePage('index.html#school-page', {changeHash: true, reloadPage: true});
+								window.location = 'index.html#school-page';
+							}
+						},
+						error: function(jqXHR, textStatus, errorThrown){
+							submitButton.removeAttr('disabled');
+							app_alert('Unable to connect to server');
+						}
+					});
+					return false;
+				});
+			});
+		</script>
+	</body>
+</html>

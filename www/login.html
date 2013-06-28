@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<title>Login</title>
+		<link rel="apple-touch-icon" href="img/icon.png">
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+		<script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="js/json.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
+		<script type="text/javascript" src="js/config.js"></script>
+	</head>
+	<body>
+		<div data-role="page" id="login-page">
+			<div data-role="header" data-position="fixed">
+				<h3>Schudio</h3>
+			</div>
+			<div data-role="content">    
+				<form method="post">
+					<div data-role="fieldcontain" class="input">
+						<input type="email" name="email" value="" placeholder="Email" />
+					</div>
+					<div data-role="fieldcontain" class="input">
+						<input type="password" name="password" value="" placeholder="Password" />
+					</div>
+					<div data-role="fieldcontain" class="submit">
+						<input type="submit" value="Sign in" id="submit-button" data-theme="b">
+					</div>
+				</form>
+				<br />
+				<p><a href="signup.html" data-role="button" data-ajax="false">Join Schudio</a></p>
+				<p style="text-align:center"><a href="reset-password.html" data-ajax="false">Forgot your password?</a></p>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('#login-page').on('pageinit', function (event) {
+				if (window.localStorage['user'] != undefined) {
+//					$.mobile.changePage('index.html', {reloadPage: true});
+					window.location = 'index.html';
+				} else {
+					$('#login-page form').on('submit', function(event) {
+						var loginForm = $('#login-page form');
+						var submitButton = $('#submit-button', loginForm);
+						submitButton.attr('disabled', 'disabled');
+						var e = $('input[name=email]', loginForm).val();
+						var p = $('input[name=password]', loginForm).val();
+						if (e == '' || p == '') {
+							app_alert('You must enter email and password');
+							submitButton.removeAttr('disabled');
+							return false;
+						}
+						$.ajax({
+							type: 'post',
+							url: api_url + 'auth', 
+							data: {email: e, password: p},
+							dataType: 'json',
+							success: function(data) {
+					            if (data.error != undefined) {
+					     			submitButton.removeAttr('disabled');
+					     			app_alert(data.error);
+						        } else {
+						        	localStorage.setItem('user', JSON.stringify(data));             
+//					            	$.mobile.changePage('index.html', {changeHash: true, reloadPage: true});
+					            	window.location = 'index.html';
+						        }
+							}, 
+							error: function(jqXHR, textStatus, errorThrown){
+								app_alert('Unable to connect to server');
+								submitButton.removeAttr('disabled');
+							}
+						});
+						return false;
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

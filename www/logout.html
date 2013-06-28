@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<title>Logout</title>
+		<link rel="apple-touch-icon" href="img/icon.png">
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+		<script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
+	</head>
+	<body>
+		<div data-role="page" id="logout-page">
+			<div data-role="header" data-position="fixed">
+				<h3>Schudio</h3>
+			</div>
+			<div data-role="content">    
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('#logout-page').on('pageinit', function (event) {
+				if (window.localStorage['user'] != undefined) {
+					localStorage.removeItem('user');
+				}
+// 				$.mobile.changePage('login.html', {changeHash: true, reloadPage: true});
+				window.location = 'login.html';
+			});
+		</script>
+	</body>
+</html>
