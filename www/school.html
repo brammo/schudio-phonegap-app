@@ -5,13 +5,12 @@
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 		<title>School</title>
 		<link rel="apple-touch-icon" href="img/icon.png">
-		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/styles.css" />
 		<script type="text/javascript" src="phonegap.js"></script>
 		<script type="text/javascript" src="js/json.js"></script>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
-		<script type="text/javascript" src="js/geoposition.js"></script>
 		<script type="text/javascript" src="js/config.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 	</head>
@@ -85,7 +84,7 @@
 								} else {
 									localStorage.setItem('user', JSON.stringify(data));
 // 									$.mobile.changePage('index.html#settings-page', {changeHash: true, reloadPage: true});
-									window.location = 'index.html';
+									window.location = 'index.html#settings-page';
 								}
 							},
 							error: function(jqXHR, textStatus, errorThrown){
