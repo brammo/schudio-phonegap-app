@@ -7,9 +7,6 @@
 		<link rel="apple-touch-icon" href="img/icon.png">
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/styles.css" />
-		<script type="text/javascript" src="phonegap.js"></script>
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
 	</head>
 	<body>
 		<div data-role="page" id="logout-page">
@@ -19,12 +16,14 @@
 			<div data-role="content">    
 			</div>
 		</div>
+		<script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
 		<script type="text/javascript">
 			$('#logout-page').on('pageinit', function (event) {
 				if (window.localStorage['user'] != undefined) {
 					localStorage.removeItem('user');
 				}
-// 				$.mobile.changePage('login.html', {changeHash: true, reloadPage: true});
 				window.location = 'login.html';
 			});
 		</script>

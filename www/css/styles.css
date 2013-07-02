@@ -397,7 +397,7 @@ div.heading.schudio div.logo img {
 
 #info .ui-icon { background:url(../img/nav-icons/info.png) 50% 50% no-repeat;  background-size: 13px 27px; }
 #home .ui-icon { background:url(../img/nav-icons/home.png) 50% 50% no-repeat;  background-size: 27px 25px; }
-#grid .ui-icon { background:url(../img/nav-icons/grid.png) 50% 50% no-repeat;  background-size: 27px 27px; }
+#gear .ui-icon { background:url(../img/nav-icons/gear.png) 50% 50% no-repeat;  background-size: 27px 27px; }
 #mail .ui-icon { background:url(../img/nav-icons/mail.png) 50% 50% no-repeat;  background-size: 27px 21px; }
 
 /* =============================================================================
@@ -537,4 +537,12 @@ div.input.error select {
 
 .ui-field-contain, .ui-mobile fieldset.ui-field-contain {
 	padding: 0;
+}
+
+.ui-field-contain input.ui-input-text, 
+.ui-field-contain textarea.ui-input-text, 
+.ui-field-contain .ui-input-search, 
+.ui-field-contain div.ui-input-text,
+.ui-field-contain .ui-btn.ui-submit {
+	width: 100%;
 }

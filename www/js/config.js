@@ -1,7 +1,10 @@
 var schudio_domain = 'schudiodev.com';
-var api_url = 'http://app.' + schudio_domain + '/api/';
+var api_url = 'http://app.schudiodev.com/api/';
 
 function app_alert(text) {
-//	alert(text);
-	navigator.notification.alert(text);
+	if (navigator.notification != undefined) {
+		navigator.notification.alert(text);
+	} else {
+		alert(text);
+	}
 }

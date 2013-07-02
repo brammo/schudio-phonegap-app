@@ -7,12 +7,6 @@
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/styles.css" />
 		<link rel="stylesheet" type="text/css" href="css/fullcalendar.css" />
-		<script type="text/javascript" src="phonegap.js"></script>
-		<script type="text/javascript" src="js/json.js"></script>
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
-		<script type="text/javascript" src="js/config.js"></script>
-		<script type="text/javascript" src="js/main.js"></script>
 	</head>
 	<body>
 		<div data-role="page" id="news-page">
@@ -37,10 +31,16 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="js/json.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
+		<script type="text/javascript" src="js/config.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
 		<script type="text/javascript">
 			$('#news-page').on('pageinit', function(){
-			    $.ajax({
-		    		type: 'get',
+				$.ajax({
+					type: 'get',
 					url: api_url + 'news/' + user.User.account_id,
 					dataType: 'html',
 					success: function(data) {
@@ -49,7 +49,7 @@
 					error: function(jqXHR, textStatus, errorThrown){
 						navigator.notification.alert(textStatus);
 					}
-		    	});
+				});
 			});
 		</script>	
 	</body>

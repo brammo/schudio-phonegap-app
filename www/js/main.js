@@ -36,6 +36,35 @@ function initIndex() {
 	$('.social').show();
 }
 
+function initAbout() {
+	$('#about-page div[data-role=content]').html(school.description);
+}
+
+function initContact() {
+	$('#contact-school-name').html(school.name);
+	if (school.address) {
+		$('#contact-address').html(school.address);
+	} else {
+		$('#contact-address').hide();
+	}
+	if (school.email) {
+		$('#contact-email a').text(school.email).attr('href', 'mailto:' + school.email);
+	} else {
+		$('#contact-email').hide();
+	}
+	if (school.telephone) {
+		$('#contact-tel a').text(school.telephone).attr('href', 'tel:' + school.telephone);
+	} else {
+		$('#contact-tel').hide();
+	}
+	if (school.fax) {
+		$('#contact-fax').text(school.fax).attr('href', 'tel:' + school.fax);
+	} else {
+		$('#contact-fax').hide();
+	}
+	$('#contact-website a').text(school.host).attr('href', 'http://' + school.host);
+}
+
 if (window.localStorage['user'] != undefined) {
 	user = JSON.parse(localStorage.getItem('user'));
 }
@@ -53,6 +82,8 @@ if (user) {
 				school = data;
 				initHeader();
 				initIndex();
+				initAbout();
+				initContact();
 			}
 		},
 		error: function(jqXHR, textStatus, errorThrown){
@@ -60,6 +91,5 @@ if (user) {
 		}
 	});
 } else {
-//	$.mobile.changePage('login.html', {changeHash: true, reloadPage: true});
 	window.location = 'login.html';
 }
