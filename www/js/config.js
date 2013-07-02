@@ -8,3 +8,11 @@ function app_alert(text) {
 		alert(text);
 	}
 }
+
+function onDeviceReady() {
+	if (navigator.splashscreen != undefined) {
+		navigator.splashscreen.hide();
+	}
+}
+
+document.addEventListener('deviceready', onDeviceReady, false);
