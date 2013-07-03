@@ -64,32 +64,63 @@ function initContact() {
 	}
 	$('#contact-website a').text(school.host).attr('href', 'http://' + school.host);
 }
+/*
+function checkNotification() {
+	$.ajax({
+		type: 'post',
+		url: api_url + 'notifications/' + user.account_id + ,
+		function(data){
+			if (data.error != undefined) {
+				app_alert(data.error);
+			} else {
+			}
+		},
+		function(){
+			app_alert('Unable to connect to server');
+		}
+	);
+}
+*/
 
 if (window.localStorage['user'] != undefined) {
 	user = JSON.parse(localStorage.getItem('user'));
 }
 
 if (user) {
-	host = 'http://' + user.School.url + '.' + schudio_domain;
-	$.ajax({
-		type: 'post',
-		url: api_url + 'userschool/' + user.User.id,
-		dataType: 'json',
-		success: function(data) {
-			if (data.error != undefined) {
-				app_alert(data);
-			} else {
-				school = data;
-				initHeader();
-				initIndex();
-				initAbout();
-				initContact();
+	var now = Math.round($.now() / 1000);
+	var last_update = localStorage.getItem('last_update');
+	
+	if (window.localStorage['school'] == undefined || (now - last_update) > 10000) {
+		$.ajax({
+			type: 'post',
+			url: api_url + 'getschool/' + user.accoun_id,
+			dataType: 'json',
+			success: function(data) {
+				if (data.error != undefined) {
+					app_alert(data.error);
+				} else {
+					school = data;
+					localStorage.setItem('school', JSON.stringify(school));
+					localStorage.setItem('last_update', now);
+					host = 'http://' + school.url + '.' + schudio_domain;
+					initHeader();
+					initIndex();
+					initAbout();
+					initContact();
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				app_alert('Unable to connect to server');
 			}
-		},
-		error: function(jqXHR, textStatus, errorThrown){
-			app_alert('Unable to connect to server');
-		}
-	});
+		});
+	} else {
+		school = JSON.parse(localStorage.getItem('school'));
+		host = 'http://' + school.url + '.' + schudio_domain;
+		initHeader();
+		initIndex();
+		initAbout();
+		initContact();
+	}
 } else {
 	window.location = 'login.html';
 }

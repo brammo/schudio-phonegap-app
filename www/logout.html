@@ -23,6 +23,8 @@
 			$('#logout-page').on('pageinit', function (event) {
 				if (window.localStorage['user'] != undefined) {
 					localStorage.removeItem('user');
+					localStorage.removeItem('school');
+					localStorage.removeItem('last_update');
 				}
 				window.location = 'login.html';
 			});

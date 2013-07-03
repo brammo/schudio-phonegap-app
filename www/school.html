@@ -20,7 +20,8 @@
 			</div>
 			<div data-role="content">
 				<form method="post" id="school-form">
-					<div id="schools"></div>
+					<fieldset data-role="controlgroup" id="schools">
+					</fieldset>
 					<div data-role="fieldcontain" class="submit">
 						<input  data-theme="b" type="submit" value="Save" />
 					</div>
@@ -53,21 +54,20 @@
 					theme: 'b',
 					html: ''
 				});
-
-			    	navigator.geolocation.getCurrentPosition(function(position){
-			    		load_schools(position);
-			    	}, function(){
-			    		load_schools();
-			    	});
+		    	navigator.geolocation.getCurrentPosition(function(position){
+		    		load_schools(position);
+		    	}, function(){
+		    		load_schools();
+		    	});
 			});	
 			$('#school-form').submit(function(event){
-	    			var school = $('input[name=school]:radio:checked').val();
-	    			if (!school) {
+	    		var school = $('input[name=school]:radio:checked').val();
+	    		if (!school) {
 	    			alert('Please, select a school');
-	    			} else {
+	    		} else {
 					$.ajax({
 						type: 'post',
-						url: api_url + 'school/' + user.User.id,
+						url: api_url + 'school/' + user.id,
 						data: {
 							school: school, 
 						},
@@ -76,7 +76,8 @@
 							if (data.error != undefined) {
 								app_alert(data.error);
 							} else {
-								localStorage.setItem('user', JSON.stringify(data));
+								localStorage.setItem('user', JSON.stringify(data.User));
+								localStorage.setItem('school', JSON.stringify(data.Account));
 								window.location = 'index.html#settings-page';
 							}
 						},
@@ -86,16 +87,16 @@
 					});
 	    			}
 				return false;
-		    	});
+		    });
 			function load_schools(position) {
-				var url = api_url + 'schools/' + user.User.id;
+				var url = api_url + 'schools/' + user.id;
 				if (position != undefined) {
 					url += '/' + position.coords.latitude + '/' + position.coords.longitude;
 				}
 				$('#schools').load(url, function(){
 					$.mobile.loading('hide');
-					$('input[name=school][value=' + user.User.account_id + ']').attr('checked', true);
-					$('#schools').trigger('create');
+					$('input[name=school][value=' + user.account_id + ']').attr('checked', true);
+					$('#school-form').trigger('create');
 				});
 			}
 			function school_error(error) {

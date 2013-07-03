@@ -41,7 +41,7 @@
 			$('#events-page').on('pageinit', function(){
 				$.ajax({
 					type: 'get',
-					url: api_url + 'events/' + user.User.account_id,
+					url: api_url + 'events/' + user.account_id,
 					dataType: 'html',
 					success: function(data) {
 						$('#events-page div[data-role=content]').html(data).trigger('create');

@@ -51,7 +51,7 @@
 				$('#calendar').fullCalendar({
 					header: { left: 'prev', center: 'title', right: 'next' },
 					editable: false,
-					events: api_url + 'calendar/' + user.User.account_id,
+					events: api_url + 'calendar/' + user.account_id,
 					eventClick: function(event, jsEvent, view) {
 						$.ajax({
 							url: event.url, 

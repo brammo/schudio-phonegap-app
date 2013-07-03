@@ -539,10 +539,12 @@ div.input.error select {
 	padding: 0;
 }
 
-.ui-field-contain input.ui-input-text, 
-.ui-field-contain textarea.ui-input-text, 
-.ui-field-contain .ui-input-search, 
-.ui-field-contain div.ui-input-text,
-.ui-field-contain .ui-btn.ui-submit {
-	width: 100%;
+@media all and (min-width: 28em){
+	.ui-field-contain input.ui-input-text, 
+	.ui-field-contain textarea.ui-input-text, 
+	.ui-field-contain .ui-input-search, 
+	.ui-field-contain div.ui-input-text,
+	.ui-field-contain .ui-btn.ui-submit {
+		width: 100%;
+	}
 }

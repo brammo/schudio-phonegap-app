@@ -292,14 +292,14 @@
 		<script type="text/javascript" src="js/main.js"></script>
 		<script type="text/javascript">
 			$('#account-page').live('pageinit', function (event) {
-				$('#UserEmail').val(user.User.email);
-				$('#UserName').val(user.User.name);
-				$('#UserPostcode').val(user.User.postcode);
+				$('#UserEmail').val(user.email);
+				$('#UserName').val(user.name);
+				$('#UserPostcode').val(user.postcode);
 				$('#AccountForm').submit(function(event){
 					submitButton.attr('disabled', 'disabled');
 					$.ajax({
 						type: 'post',
-						url: api_url + 'account/' + user.User.id,
+						url: api_url + 'profile/' + user.id,
 						data: {
 							email: $('#UserEmail').val(), 
 							name: $('#UserName').val(),
@@ -329,7 +329,7 @@
 					submitButton.attr('disabled', 'disabled');
 					$.ajax({
 						type: 'post',
-						url: api_url + 'password/' + user.User.id,
+						url: api_url + 'password/' + user.id,
 						data: {
 							password: $('#UserPassword').val() 
 						},

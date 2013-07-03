@@ -42,7 +42,7 @@
 				var params = event.delegateTarget.baseURI.split('?');
 				var id = params[1].replace('id=', '');
 				$.ajax({
-		    			type: 'get',
+					type: 'get',
 					url: api_url + 'news_article/' + id,
 					dataType: 'html',
 					success: function(data) {

@@ -41,7 +41,7 @@
 			$('#news-page').on('pageinit', function(){
 				$.ajax({
 					type: 'get',
-					url: api_url + 'news/' + user.User.account_id,
+					url: api_url + 'news/' + user.account_id,
 					dataType: 'html',
 					success: function(data) {
 						$('#news-page div[data-role=content]').html(data).trigger('create');

@@ -61,7 +61,10 @@
 									submitButton.removeAttr('disabled');
 									app_alert(data.error);
 								} else {
-									localStorage.setItem('user', JSON.stringify(data));             
+									var now = Math.round($.now() / 1000);
+									localStorage.setItem('user', JSON.stringify(data.User));             
+									localStorage.setItem('school', JSON.stringify(data.Account));             
+									localStorage.setItem('last_update', now);             
 									window.location = 'index.html';
 								}
 							}, 
