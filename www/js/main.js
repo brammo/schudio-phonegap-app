@@ -82,50 +82,57 @@ function checkNotification() {
 }
 */
 
-if (window.localStorage['user'] != undefined) {
-	user = JSON.parse(localStorage.getItem('user'));
-}
-
-if (user) {
-	var now = Math.round($.now() / 1000);
-	var last_update = localStorage.getItem('last_update');
+function init() {
 	
-	if (window.localStorage['school'] == undefined || (now - last_update) > 10000) {
-		$.ajax({
-			type: 'post',
-			url: api_url + 'getschool/' + user.accoun_id,
-			dataType: 'json',
-			success: function(data) {
-				if (data.error != undefined) {
-					app_alert(data.error);
-				} else {
-					school = data;
-					localStorage.setItem('school', JSON.stringify(school));
-					localStorage.setItem('last_update', now);
-					host = 'http://' + school.url + '.' + schudio_domain;
-					initHeader();
-					initIndex();
-					initAbout();
-					initContact();
-				}
-			},
-			error: function(jqXHR, textStatus, errorThrown){
-				app_alert('Unable to connect to server');
-			}
-		});
-	} else {
-		school = JSON.parse(localStorage.getItem('school'));
-		host = 'http://' + school.url + '.' + schudio_domain;
-		initHeader();
-		initIndex();
-		initAbout();
-		initContact();
+	if (window.localStorage['user'] != undefined) {
+		user = JSON.parse(localStorage.getItem('user'));
 	}
 	
-	$('a[target=_blank],a[target=_system]').on('click', function(event){
-		event.PreventDefault();
-		window.open($(this).attr('href'), '_system');
-	});
-} else {
-	window.location = 'login.html';
+	if (user) {
+		var now = Math.round($.now() / 1000);
+		var last_update = localStorage.getItem('last_update');
+		
+		if (window.localStorage['school'] == undefined || (now - last_update) > 10000) {
+			$.ajax({
+				type: 'post',
+				url: api_url + 'getschool/' + user.accoun_id,
+				dataType: 'json',
+				success: function(data) {
+					if (data.error != undefined) {
+						app_alert(data.error);
+					} else {
+						school = data;
+						localStorage.setItem('school', JSON.stringify(school));
+						localStorage.setItem('last_update', now);
+						host = 'http://' + school.url + '.' + schudio_domain;
+						initHeader();
+						initIndex();
+						initAbout();
+						initContact();
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					app_alert('Unable to connect to server');
+				}
+			});
+		} else {
+			school = JSON.parse(localStorage.getItem('school'));
+			host = 'http://' + school.url + '.' + schudio_domain;
+			initHeader();
+			initIndex();
+			initAbout();
+			initContact();
+		}
+		
+		$('a[target=_blank]').live('click', function(event){
+			alert('Open external link');
+			window.open($(this).attr('href'), '_system', 'location=yes');
+			return false;
+		});
+	} else {
+		window.location = 'login.html';
+	}
 }
+
+//document.addEventListener('deviceready', init, false);
+$(function(){ init(); });
