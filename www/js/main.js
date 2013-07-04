@@ -121,6 +121,11 @@ if (user) {
 		initAbout();
 		initContact();
 	}
+	
+	$('a[target=_blank],a[target=_system]').on('click', function(event){
+		event.PreventDefault();
+		window.open($(this).attr('href'), '_system');
+	});
 } else {
 	window.location = 'login.html';
 }
