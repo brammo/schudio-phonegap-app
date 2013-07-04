@@ -47,6 +47,11 @@
 					dataType: 'html',
 					success: function(data) {
 						$('#event-page div[data-role=content]').html(data).trigger('create');
+						$('#event-page .content a').live('click', function(event){
+							alert('Open external link');
+							window.open($(this).attr('href'), '_system', 'location=yes');
+							return false;
+						});
 					},
 					error: function(jqXHR, textStatus, errorThrown){
 						navigator.notification.alert(textStatus);

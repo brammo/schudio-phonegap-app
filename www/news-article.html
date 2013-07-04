@@ -47,6 +47,11 @@
 					dataType: 'html',
 					success: function(data) {
 						$('#news-article-page div[data-role=content]').html(data).trigger('create');
+						$('#news-article-page .content a').live('click', function(event){
+							alert('Open external link');
+							window.open($(this).attr('href'), '_system', 'location=yes');
+							return false;
+						});
 					},
 					error: function(jqXHR, textStatus, errorThrown){
 						app_alert(textStatus);

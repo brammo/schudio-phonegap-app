@@ -95,7 +95,7 @@ function init() {
 		if (window.localStorage['school'] == undefined || (now - last_update) > 10000) {
 			$.ajax({
 				type: 'post',
-				url: api_url + 'getschool/' + user.accoun_id,
+				url: api_url + 'getschool/' + user.account_id,
 				dataType: 'json',
 				success: function(data) {
 					if (data.error != undefined) {
