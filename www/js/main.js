@@ -135,4 +135,5 @@ function init() {
 }
 
 //document.addEventListener('deviceready', init, false);
-$(function(){ init(); });
+//$(function(){ init(); });
+init();
