@@ -77,11 +77,11 @@ function checkNotification() {
 			} else {
 				if (data.title != undefined) {
 					if (navigator.notification != undefined) {
-						navigator.notification.alert(data.title, 'Announcement', function(){
+						navigator.notification.alert(data.title, function(){
 							window.location = '/announcement.html?id=' + data.id;
-						});
+						}, 'Announcement');
 					} else {
-						app_alert(data.title, 'Announcement');
+						app_alert(data.title);
 					}
 				}
 			}
@@ -140,6 +140,7 @@ function init() {
 			return false;
 		});
 		
+		checkNotification();		
 		window.setInterval(checkNotification, 30000);
 	} else {
 		window.location = 'login.html';
