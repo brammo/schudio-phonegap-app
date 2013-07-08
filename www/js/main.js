@@ -64,24 +64,34 @@ function initContact() {
 	}
 	$('#contact-website a').text(school.host).attr('href', 'http://' + school.host);
 }
-/*
+
+
 function checkNotification() {
 	$.ajax({
 		type: 'post',
-		url: api_url + 'notifications/' + user.account_id + ,
-		function(data){
+		url: api_url + 'notifications/' + user.id,
+		dataType: 'json',
+		success: function(data){
 			if (data.error != undefined) {
 				app_alert(data.error);
 			} else {
+				if (data.title != undefined) {
+					if (navigator.notification != undefined) {
+						navigator.notification.alert(data.title, 'Announcement', function(){
+							window.location = '/announcement.html?id=' + data.id;
+						});
+					} else {
+						app_alert(data.title, 'Announcement');
+					}
+				}
 			}
 		},
-		function(){
+		error: function(){
 			app_alert('Unable to connect to server');
 		}
-	);
-}
-*/
-
+	});
+}		
+		
 function init() {
 	
 	if (window.localStorage['user'] != undefined) {
@@ -129,6 +139,8 @@ function init() {
 			window.open($(this).attr('href'), '_system', 'location=yes');
 			return false;
 		});
+		
+		window.setInterval(checkNotification, 30000);
 	} else {
 		window.location = 'login.html';
 	}
