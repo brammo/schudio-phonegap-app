@@ -77,9 +77,13 @@ function checkNotification() {
 			} else {
 				if (data.title != undefined) {
 					if (navigator.notification != undefined) {
-						navigator.notification.alert(data.title, function(){
-							window.location = '/announcement.html?id=' + data.id;
-						}, 'Announcement');
+						navigator.notification.alert(data.title, 
+							function(){
+								window.location = 'announcement.html?id=' + data.id;
+							}, 
+							'Announcement', 
+							'View'
+						);
 					} else {
 						app_alert(data.title);
 					}
@@ -135,7 +139,7 @@ function init() {
 		}
 		
 		$('a[target=_blank]').live('click', function(event){
-			alert('Open external link');
+//			alert('Open external link');
 			window.open($(this).attr('href'), '_system', 'location=yes');
 			return false;
 		});
